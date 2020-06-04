@@ -1,9 +1,10 @@
 #!/usr/bin/env python3
 
-# We need: socket for reverse dns lookup, ssl for our https connection, urllib to open the URL for our XML file,
+# We need: socket for reverse dns lookup, ssl for our https connection, urllib to open the URL for our XML file, sys to exit,
 # and xml.etree.ElementTree (way too much to type) to get data out of our xml file in a sane fashion.
 import socket
 import ssl
+import sys
 import urllib.request
 import xml.etree.ElementTree as ET
 
@@ -13,8 +14,8 @@ fwAPIKey = "F00b4r"
 
 # Testing to see if you can read >.>
 if $fwAddress == "0.0.0.0" or $fwAPIKey == "F00b4r":
-    print("Please enter your firewall's address and/or your API key into the fwAddress and fwAPIKey variables, respectively.")
-
+    sys.exit("Please enter your firewall's address and/or your API key into the fwAddress and fwAPIKey variables, respectively.")
+    
 # Set up our empty lists to append to later.
 comboList, ipList, userList = [], [], []
 
