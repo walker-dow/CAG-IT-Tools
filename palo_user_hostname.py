@@ -1,7 +1,8 @@
 #!/usr/bin/env python3
 
-# We need: socket for reverse dns lookup, ssl for our https connection, urllib to open the URL for our XML file, sys to exit,
-# and xml.etree.ElementTree (way too much to type) to get data out of our xml file in a sane fashion.
+# We need: os for pause in Windows, socket for reverse dns lookup, ssl for our https connection, urllib to open the URL for our XML file,
+# sys to exit, and xml.etree.ElementTree (way too much to type) to get data out of our xml file in a sane fashion.
+import os
 import socket
 import ssl
 import sys
@@ -65,3 +66,9 @@ if comboList:
         print(comboList[entry])
 else:
     print("No user name matches found.")
+
+# Pause if we are running in Windows, to allow users to run the script easily from their file manager or desktop
+try:
+    os.system('pause')
+except NameError:
+    sys.exit()
