@@ -1,11 +1,20 @@
 #!/usr/bin/env python3
 
-# We need: socket for reverse dns lookup, ssl for our https connection, urllib to open the URL for our XML file,
+# We need: socket for reverse dns lookup, ssl for our https connection, urllib to open the URL for our XML file, sys to exit,
 # and xml.etree.ElementTree (way too much to type) to get data out of our xml file in a sane fashion.
 import socket
 import ssl
+import sys
 import urllib.request
 import xml.etree.ElementTree as ET
+
+# Please enter your firewall's hostname or IP and API Key here:
+fwAddress = "0.0.0.0"
+fwAPIKey = "F00b4r"
+
+# Testing to see if you can read >.>
+if fwAddress == "0.0.0.0" or fwAPIKey == "F00b4r":
+    sys.exit("Please enter your firewall's address and/or your API key into the fwAddress and fwAPIKey variables, respectively.")
 
 # Set up our empty lists to append to later.
 comboList, ipList, userList = [], [], []
@@ -14,7 +23,7 @@ comboList, ipList, userList = [], [], []
 ssl._create_default_https_context = ssl._create_unverified_context
 
 # Store the location of the user XML file to paloURL
-paloURL = "https://[firewall hostname/ip goes here]/api/?key=[Key goes here]=&type=op&cmd=<show><user><ip-user-mapping><all></all></ip-user-mapping></user></show>"
+paloURL = "https://" + fwAddress + "/api/?key=" + fwAPIKey + "&type=op&cmd=<show><user><ip-user-mapping><all></all></ip-user-mapping></user></show>"
 
 # Get the name we're looking for from user input.
 userName = str.lower(input("Input user\'s name(or leave blank for all users and hosts): "))
