@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 
-# We need: re to seach for the lines we need, urllib to query the staff pages.
+# We need: os for pause in Windows, re to seach for the lines we need, urllib to query the staff pages.
+import os
 import re
 import urllib.request
 
@@ -124,3 +125,9 @@ for location in range (0, len(teamPagesB), 2):
 for location in range (0, len(teamPagesC), 2):
     print("\n=====", teamPagesC[location], "=====")
     checkStaffC(teamPagesC[location + 1],names)
+
+# Pause if we are running in Windows, to allow users to run the script easily from their file manager or desktop
+try:
+    os.system('pause')
+except NameError:
+    sys.exit()
