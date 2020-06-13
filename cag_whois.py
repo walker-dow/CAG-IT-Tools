@@ -22,7 +22,7 @@ fixedOpsDigitalPages = {
     "Continental Collision": "https://www.continentalcollision.com/team-members/"
 }
 
-# Dealer dot Com Pages.
+# Dealer Dot Com Pages.
 dealerDotComPages = {
     "Audi San Juan": "https://www.audisanjuan.com/dealership/staff.htm"
 }
