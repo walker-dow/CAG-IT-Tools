@@ -115,9 +115,10 @@ def printOut(results):
     for op in range(0, len(output)):
         output[op] = re.sub(r"^\s", "", str(output[op]))
     output = list(set(output))
-    # And now we loop through our list of results and print!
+    # And now we loop through our list of results and print! ...so long as they aren't blank.
     for entry in output:
-        print(entry, "\n")
+        if entry != "":
+            print(entry, "\n")
 
 
 # Getting names to search for from the user.
