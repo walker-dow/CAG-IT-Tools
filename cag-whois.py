@@ -9,13 +9,23 @@ import urllib.request
 # Format: "Name", "URL", "Name", "URL", etc. Use a Null string if no name is desired.
 
 # A = Dealer Inspire Pages.
-teamPagesA = ["Austin Infiniti", "https://www.austininfiniti.com/about-us/staff/", "Austin Subaru", "https://www.austinsubaru.com/about-us/staff/", "First Texas Honda", "https://www.firsttexashonda.com/staff/", "Mercedes-Benz of Austin", "https://www.mercedesbenzofaustin.com/about-us/staff/", "Merceces-Benz of San Juan", "https://www.mbsanjuantx.com/about-us/staff/"]
+teamPagesA = [ \
+    "Austin Infiniti", "https://www.austininfiniti.com/about-us/staff/", \
+    "Austin Subaru", "https://www.austinsubaru.com/about-us/staff/", \
+    "First Texas Honda", "https://www.firsttexashonda.com/staff/", \
+    "Mercedes-Benz of Austin", "https://www.mercedesbenzofaustin.com/about-us/staff/", \
+    "Merceces-Benz of San Juan", "https://www.mbsanjuantx.com/about-us/staff/" \
+]
 
 # B = Fixed Ops Digital Pages.
-teamPagesB = ["Continental Collision", "https://www.continentalcollision.com/team-members/"]
+teamPagesB = [ \
+    "Continental Collision", "https://www.continentalcollision.com/team-members/" \
+]
 
 # C = Dealer dot Com Pages.
-teamPagesC = ["Audi San Juan", "https://www.audisanjuan.com/dealership/staff.htm"]
+teamPagesC = [ \
+    "Audi San Juan", "https://www.audisanjuan.com/dealership/staff.htm" \
+]
 
 # Some sites don't like being spidered, adding headers to tell them we're a real browser, promise.
 opener = urllib.request.build_opener()
@@ -25,7 +35,7 @@ urllib.request.install_opener(opener)
 # Function to check our first set of URLs
 def checkStaffA(staffURL, names):
     # Grabbing the page.
-	webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
+    webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
     # Intializing an empty array to append our results to.
     results = []
     # For each name, we want to grab it if it appears on the site, along with their title, and top gun status, along with some blobs of code.
@@ -52,7 +62,7 @@ def checkStaffA(staffURL, names):
 # Function to check our second set of URLs
 def checkStaffB(staffURL, names):
     # Grabbing the page.
-	webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
+    webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
     # Intializing an empty array to append our results to.
     results = []
     # For each name, we want to grab it if it appears on the site, along with their title, and top gun status, along with some blobs of code.
@@ -74,7 +84,7 @@ def checkStaffB(staffURL, names):
 # Function to check our third set of URLs
 def checkStaffC(staffURL, names):
     # Grabbing the page.
-	webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
+    webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
     # Intializing an empty array to append our results to.
     results = []
     # For each name, we want to grab it if it appears on the site, along with their title, and top gun status, along with some blobs of code.
@@ -94,12 +104,12 @@ def checkStaffC(staffURL, names):
 
 # Function to print out our results.
 def printOut(results):
-	# Intializing an empty array to append our output to.
+    # Intializing an empty array to append our output to.
     output = []
-	# Looping through the results array and pulling out the clumped up entries.
+    # Looping through the results array and pulling out the clumped up entries.
     for clumpedArray in results:
         # We split them into a temp array, then add them onto our output array.
-		tempArray = (clumpedArray.split(","))
+        tempArray = (clumpedArray.split(","))
         output += tempArray
     # Loop through our results and get rid of those pesky extra spaces for some sites.
     for op in range(0, len(output)):
@@ -109,11 +119,11 @@ def printOut(results):
     for entry in output:
         print(entry, "\n")
 
-		
+
 # Getting names to search for from the user.
 names = input("Please input names you would like to search for: ").split(" ")
 
-# This is where we actually do the thing		
+# This is where we actually do the thing
 for location in range (0, len(teamPagesA), 2):
     print("\n=====", teamPagesA[location], "=====")
     checkStaffA(teamPagesA[location + 1],names)
