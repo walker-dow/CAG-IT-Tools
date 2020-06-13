@@ -6,34 +6,34 @@ import re
 import urllib.request
 
 # First, we need to define the pages we are lookign for employee information on.
-# Format: "Name", "URL", "Name", "URL", etc. Use a Null string if no name is desired.
+# We're putting them in dictionaries. Key is the dealership name, value is the URL of the staff page.
 
-# A = Dealer Inspire Pages.
-teamPagesA = [ \
-    "Austin Infiniti", "https://www.austininfiniti.com/about-us/staff/", \
-    "Austin Subaru", "https://www.austinsubaru.com/about-us/staff/", \
-    "First Texas Honda", "https://www.firsttexashonda.com/staff/", \
-    "Mercedes-Benz of Austin", "https://www.mercedesbenzofaustin.com/about-us/staff/", \
-    "Merceces-Benz of San Juan", "https://www.mbsanjuantx.com/about-us/staff/" \
-]
+# Dealer Inspire Pages.
+dealerInspirePages = {
+    "Austin Infiniti": "https://www.austininfiniti.com/about-us/staff/",
+    "Austin Subaru": "https://www.austinsubaru.com/about-us/staff/",
+    "First Texas Honda": "https://www.firsttexashonda.com/staff/",
+    "Mercedes-Benz of Austin": "https://www.mercedesbenzofaustin.com/about-us/staff/",
+    "Merceces-Benz of San Juan": "https://www.mbsanjuantx.com/about-us/staff/"
+}
 
-# B = Fixed Ops Digital Pages.
-teamPagesB = [ \
-    "Continental Collision", "https://www.continentalcollision.com/team-members/" \
-]
+# Fixed Ops Digital Pages.
+fixedOpsDigitalPages = {
+    "Continental Collision": "https://www.continentalcollision.com/team-members/"
+}
 
-# C = Dealer dot Com Pages.
-teamPagesC = [ \
-    "Audi San Juan", "https://www.audisanjuan.com/dealership/staff.htm" \
-]
+# Dealer dot Com Pages.
+dealerDotComPages = {
+    "Audi San Juan": "https://www.audisanjuan.com/dealership/staff.htm"
+}
 
 # Some sites don't like being spidered, adding headers to tell them we're a real browser, promise.
 opener = urllib.request.build_opener()
 opener.addheaders = [('User-agent', 'Mozilla/5.0')]
 urllib.request.install_opener(opener)
 
-# Function to check our first set of URLs
-def checkStaffA(staffURL, names):
+# Function to check Dealer Inspire URLs
+def checkStaffDealerInspire(staffURL, names):
     # Grabbing the page.
     webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
     # Intializing an empty array to append our results to.
@@ -59,8 +59,8 @@ def checkStaffA(staffURL, names):
     # We've got our results, so let's print them!
     printOut(results)
 
-# Function to check our second set of URLs
-def checkStaffB(staffURL, names):
+# Function to check Fixed Ops Digital URLs
+def checkStaffFixedOpsDigital(staffURL, names):
     # Grabbing the page.
     webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
     # Intializing an empty array to append our results to.
@@ -81,8 +81,8 @@ def checkStaffB(staffURL, names):
         results[i] = str(re.sub(r"<\/h3><p>", "\n", results[i]))
     printOut(results)
 
-# Function to check our third set of URLs
-def checkStaffC(staffURL, names):
+    # Function to check Dealer Dot Com URLs
+def checkStaffDealerDotCom(staffURL, names):
     # Grabbing the page.
     webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
     # Intializing an empty array to append our results to.
@@ -124,20 +124,18 @@ def printOut(results):
 names = input("Please input names you would like to search for: ").split(" ")
 
 # This is where we actually do the thing
-for location in range (0, len(teamPagesA), 2):
-    print("\n=====", teamPagesA[location], "=====")
-    checkStaffA(teamPagesA[location + 1],names)
+for location in dealerInspirePages:
+    print("\n=====", location, "=====")
+    checkStaffDealerInspire(dealerInspirePages[location],names)
 
-for location in range (0, len(teamPagesB), 2):
-    print("\n=====", teamPagesB[location], "=====")
-    checkStaffB(teamPagesB[location + 1],names)
+for location in fixedOpsDigitalPages:
+    print("\n=====", location, "=====")
+    checkStaffFixedOpsDigital(fixedOpsDigitalPages[location],names)
 
-for location in range (0, len(teamPagesC), 2):
-    print("\n=====", teamPagesC[location], "=====")
-    checkStaffC(teamPagesC[location + 1],names)
+for location in dealerDotComPages:
+    print("\n=====", location, "=====")
+    checkStaffDealerDotCom(dealerDotComPages[location],names)
 
 # Pause if we are running in Windows, to allow users to run the script easily from their file manager or desktop
-try:
+if os.name == "nt":
     os.system('pause')
-except NameError:
-    sys.exit()
