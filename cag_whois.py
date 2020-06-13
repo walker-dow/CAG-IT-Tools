@@ -119,6 +119,9 @@ def printOut(results):
     for entry in output:
         if entry != "":
             print(entry, "\n")
+    # If we don't have any output to print, add a new line to keep the formatting nice.
+    if output == [""]:
+        print("\n")
 
 
 # Getting names to search for from the user.
