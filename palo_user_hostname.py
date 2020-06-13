@@ -68,7 +68,5 @@ else:
     print("No user name matches found.")
 
 # Pause if we are running in Windows, to allow users to run the script easily from their file manager or desktop
-try:
+if os.name == "nt":
     os.system('pause')
-except NameError:
-    sys.exit()
