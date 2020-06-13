@@ -81,7 +81,7 @@ def checkStaffFixedOpsDigital(staffURL, names):
         results[i] = str(re.sub(r"<\/h3><p>", "\n", results[i]))
     printOut(results)
 
-    # Function to check Dealer Dot Com URLs
+# Function to check Dealer Dot Com URLs
 def checkStaffDealerDotCom(staffURL, names):
     # Grabbing the page.
     webpage = urllib.request.urlopen(staffURL).read().decode('utf-8')
