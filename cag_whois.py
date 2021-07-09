@@ -14,7 +14,7 @@ dealerInspirePages = {
     "Austin Subaru": "https://www.austinsubaru.com/about-us/staff/",
     "First Texas Honda": "https://www.firsttexashonda.com/staff/",
     "Mercedes-Benz of Austin": "https://www.mercedesbenzofaustin.com/about-us/staff/",
-    "Merceces-Benz of San Juan": "https://www.mbsanjuantx.com/about-us/staff/"
+    "Mercedes-Benz of San Juan": "https://www.mbsanjuantx.com/about-us/staff/"
 }
 
 # Fixed Ops Digital Pages.
